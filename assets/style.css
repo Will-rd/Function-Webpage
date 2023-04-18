@@ -27,3 +27,16 @@ body {
 h2 {
     text-align: center;
 }
+
+.comicImg{
+    height:185px;
+    width:130px;
+    align-self:end;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.comics{
+    display:flex;
+    justify-content:center;
+}
