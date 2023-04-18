@@ -54,10 +54,19 @@ searchButton.addEventListener("submit", function(event) {
 
             for(var i=0; i< 5; i++ ){
 
-            var comicTitles = document.createElement("li")
-            comicTitles.textContent = data.data.results[i].title;
-            heroComics.appendChild(comicTitles)
-            console.log(comicTitles);
+            var comicCard = document.createElement("div");
+            comicCard.className = "comicCard";
+            comicCard.setAttribute("style", "align-items: center; border-radius:10px; background-color: #ED1D24; color: white; text-decoration: underline; display:flex; justify-content:space-between; margin:5px 0px;")
+            heroComics.appendChild(comicCard);
+            var comicTitle = document.createElement("div");
+            comicCard.appendChild(comicTitle);
+            comicTitle.setAttribute("style", "font-size:30px; padding-left: 7px;")
+            var comicImg = document.createElement("img");
+            comicCard.appendChild(comicImg);
+            comicTitle.textContent = data.data.results[i].title;
+            comicImg.setAttribute("src", data.data.results[i].thumbnail.path + "." + data.data.results[i].thumbnail.extension);
+            comicImg.className = "comicImg";        
+
             }
         })
     })
