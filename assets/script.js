@@ -2,6 +2,9 @@
 
 var characterNameInput = document.querySelector(".input");
 
+
+
+
 // Marvel api keys
 // Api for name, ID and image retrieved from character name input
 // Api for comic list retrieved from ID result
@@ -11,7 +14,10 @@ var searchButton = document.querySelector(".search");
 // This is the the line to make the button interactive
 searchButton.addEventListener("submit", function(event) {
     event.preventDefault();
+    getMovies();
+    
 
+    
     var character = characterNameInput.value;
     var charURL = "https://gateway.marvel.com:443/v1/public/characters?ts=1&name=" + character + "&apikey=cd73d5145c7087c52ee70053e3cce481&hash=964657b7e339d5a0e89b1e4538d81e94";
 // First fetch call to obtain character name, ID and image
