@@ -11,6 +11,7 @@ var heroComics = document.querySelector(".comicList")
 // Marvel api keys
 // Api for name, ID and image retrieved from character name input
 // Api for comic list retrieved from ID result
+var imageHero = document.querySelector(".imageBox")
 
 var searchButton = document.querySelector(".search");
 
@@ -22,6 +23,8 @@ searchButton.addEventListener("submit", function(event) {
 
     
     var character = characterNameInput.value;
+
+// Api for name, ID and image retrieved from character name input 
     var charURL = "https://gateway.marvel.com:443/v1/public/characters?ts=1&name=" + character + "&apikey=cd73d5145c7087c52ee70053e3cce481&hash=964657b7e339d5a0e89b1e4538d81e94";
 // First fetch call to obtain character name, ID and image
     fetch(charURL)
@@ -38,14 +41,13 @@ searchButton.addEventListener("submit", function(event) {
         console.log(charID);
 
         // Hero image on card
-        // var thumb = document.setAttribute("src");
-        // thumb.textContent = data.data.results[0].thumbnail.path + "." + data.data.results[0].thumbnail.extension;
-        // heroImage.appendChild(thumb);
-
-        console.log(thumb);
+        var thumbImage = document.createElement("img")
+        imageHero.appendChild(thumbImage)
+        thumbImage.setAttribute("src",data.data.results[0].thumbnail.path + "." + data.data.results[0].thumbnail.extension);
+        console.log(thumbImage);
 
         // Hero name element on card
-        var charName = document.createElement("h5");
+        var charName = document.createElement("h2");
         charName.textContent = data.data.results[0].name;
         heroName.appendChild(charName);
        
