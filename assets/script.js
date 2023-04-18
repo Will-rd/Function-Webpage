@@ -1,6 +1,9 @@
 // HTML Elements
 
 var characterNameInput = document.querySelector(".input");
+var heroName = document.querySelector(".heroName")
+var heroImage = document.querySelector(".heroInfo")
+var heroComics = document.querySelector(".comicList")
 
 // Marvel api keys
 // Api for name, ID and image retrieved from character name input
@@ -27,18 +30,37 @@ searchButton.addEventListener("submit", function(event) {
         console.log(data);
         var charID = data.data.results[0].id;
         console.log(charID);
-        var thumb = data.data.results[0].thumbnail.path + "." + data.data.results[0].thumbnail.extension;
+
+        // Hero image on card
+        // var thumb = document.setAttribute("src");
+        // thumb.textContent = data.data.results[0].thumbnail.path + "." + data.data.results[0].thumbnail.extension;
+        // heroImage.appendChild(thumb);
+
         console.log(thumb);
-        var charName = data.data.results[0].name;
+
+        // Hero name element on card
+        var charName = document.createElement("h5");
+        charName.textContent = data.data.results[0].name;
+        heroName.appendChild(charName);
+       
         console.log(charName);
 
+        // Second fetch to obtain comic list
         var comicsURL = "https://gateway.marvel.com:443/v1/public/characters/" + charID + "/comics?ts=1&characterId=" + charID + "&orderBy=-issueNumber&apikey=cd73d5145c7087c52ee70053e3cce481&hash=964657b7e339d5a0e89b1e4538d81e94";
         fetch(comicsURL)
-        .then(function(response2){
-            return response2.json();
+        .then(function(response){
+            return response.json();
         })
-        .then(function(data2){
-            console.log(data2);
+        .then(function(data){
+            console.log(data);
+
+            for(var i=0; i< 5; i++ ){
+
+            var comicTitles = document.createElement("li")
+            comicTitles.textContent = data.data.results[i].title;
+            heroComics.appendChild(comicTitles)
+            console.log(comicTitles);
+            }
         })
     })
 
