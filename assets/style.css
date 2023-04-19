@@ -1,3 +1,12 @@
+#herobanner {
+    height: 500px;
+    width: 100%;
+    margin-bottom:10px;
+    background-image: url("../assets/marvel.jpeg");
+    background-size: cover;
+    background-position: center;
+}
+
 header {
     background-color: #ED1D24;
     text-align: center;
