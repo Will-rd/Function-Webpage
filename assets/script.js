@@ -4,6 +4,52 @@ var characterNameInput = document.querySelector(".input");
 var heroName = document.querySelector(".heroName")
 var heroImage = document.querySelector(".heroInfo")
 var heroComics = document.querySelector(".comicList")
+
+
+//Creating a function to call inside of the event listener to fetch data from an alternate API to append marvel charachter or villain stats and info
+
+function getStats() {
+    var statCard = document.getElementById('hero-specbox');
+    var getStat = characterNameInput.value;
+    var statUrl = 'https://superheroapi.com/api.php/10226672695516002/search/' + getStat;
+
+    fetch(statUrl)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log(data);
+         for(var i = 0; i < data.results.length; i++) {
+            var dataArray = data.results[i];
+        //   console.log(dataArray.name);
+        if(dataArray.name === getStat) {
+            console.log(dataArray.biography.alignment);
+            console.log(dataArray.powerstats);
+            var cardEl = document.createElement('div');
+            cardEl.setAttribute("class", "card col-md-7");
+            cardEl.setAttribute("style", "width: 20rem");
+            cardEl.textContent = dataArray.name;
+            
+               var statBox = document.createElement('div');
+               statBox.textContent = dataArray.biography.alignment;
+               cardEl.appendChild(statBox); 
+            
+            statCard.appendChild(cardEl);
+        }
+        }
+
+        
+       
+    })
+    return;
+}
+
+
+
+
+// Marvel api keys
+// Api for name, ID and image retrieved from character name input
+// Api for comic list retrieved from ID result
 var imageHero = document.querySelector(".imageBox")
 
 var searchButton = document.querySelector(".search");
@@ -11,7 +57,11 @@ var searchButton = document.querySelector(".search");
 // This is the the line to make the button interactive
 searchButton.addEventListener("submit", function(event) {
     event.preventDefault();
+    getStats();
+    
+    
 
+    
     var character = characterNameInput.value;
 
 // Api for name, ID and image retrieved from character name input 
