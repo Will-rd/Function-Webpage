@@ -9,6 +9,7 @@ var heroComics = document.querySelector(".comicList")
 //Creating a function to call inside of the event listener to fetch data from an alternate API to append marvel charachter or villain stats and info
 
 function getStats() {
+    var statCard = document.getElementById('hero-specbox');
     var getStat = characterNameInput.value;
     var statUrl = 'https://superheroapi.com/api.php/10226672695516002/search/' + getStat;
 
@@ -18,7 +19,26 @@ function getStats() {
     })
     .then(function(data) {
         console.log(data);
-        // for(var i = 0; i === data.results)
+         for(var i = 0; i < data.results.length; i++) {
+            var dataArray = data.results[i];
+        //   console.log(dataArray.name);
+        if(dataArray.name === getStat) {
+            console.log(dataArray.biography.alignment);
+            console.log(dataArray.powerstats);
+            var cardEl = document.createElement('div');
+            cardEl.setAttribute("class", "card col-md-7");
+            cardEl.setAttribute("style", "width: 20rem");
+            cardEl.textContent = dataArray.name;
+            
+               var statBox = document.createElement('div');
+               statBox.textContent = dataArray.biography.alignment;
+               cardEl.appendChild(statBox); 
+            
+            statCard.appendChild(cardEl);
+        }
+        }
+
+        
        
     })
     return;
