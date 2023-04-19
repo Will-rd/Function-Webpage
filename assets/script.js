@@ -6,6 +6,25 @@ var heroImage = document.querySelector(".heroInfo")
 var heroComics = document.querySelector(".comicList")
 
 
+//Creating a function to call inside of the event listener to fetch data from an alternate API to append marvel charachter or villain stats and info
+
+function getStats() {
+    var getStat = characterNameInput.value;
+    var statUrl = 'https://superheroapi.com/api.php/10226672695516002/search/' + getStat;
+
+    fetch(statUrl)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log(data);
+        // for(var i = 0; i === data.results)
+       
+    })
+    return;
+}
+
+
 
 
 // Marvel api keys
@@ -18,7 +37,8 @@ var searchButton = document.querySelector(".search");
 // This is the the line to make the button interactive
 searchButton.addEventListener("submit", function(event) {
     event.preventDefault();
-    getMovies();
+    getStats();
+    
     
 
     
