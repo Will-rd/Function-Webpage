@@ -121,17 +121,6 @@ searchButton.addEventListener("submit", function (event) {
         console.log(data);
         var charID = data.data.results[0].id;
         console.log(charID);
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            if (data.data.results.length < 1) {
-                // Add error message because no character with that name was found
-                return;
-            }
-            console.log(data);
-            var charID = data.data.results[0].id;
-            console.log(charID);
 
             // Hero image on card
             var thumbImage = document.createElement("img")
