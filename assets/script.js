@@ -4,7 +4,9 @@ var characterNameInput = document.querySelector(".input");
 var heroName = document.querySelector(".heroName")
 var heroImage = document.querySelector(".heroInfo")
 var heroComics = document.querySelector(".comicList")
-
+var formEl = document.getElementById("form");
+var inputEl = document.getElementById("specificSizeInputName");
+var errors = 0;
 
 //Creating a function to call inside of the event listener to fetch data from an alternate API to append marvel charachter or villain stats and info
 
@@ -54,6 +56,13 @@ var imageHero = document.querySelector(".imageBox")
 document.querySelector('.imageBox').style.display = 'block';
 var searchButton = document.querySelector(".search");
 
+function removeerror(){
+    if(errors>0){
+        var message = document.getElementById("errormessage");
+        message.remove();
+        errors=0;
+    }
+}
 // This is the the line to make the button interactive
 searchButton.addEventListener("submit", function(event) {
     event.preventDefault();
@@ -74,6 +83,15 @@ searchButton.addEventListener("submit", function(event) {
     .then(function(data){
         if(data.data.results.length<1){
             // Add error message because no character with that name was found
+            var error = document.createElement("div");
+            error.innerHTML = "Error. No characters were found. Check spelling.";
+            error.setAttribute("style", "color:white;");
+            error.className = "col-auto";
+            error.setAttribute("id", "errormessage");
+            formEl.appendChild(error);
+            formEl.addEventListener("submit", removeerror);
+            inputEl.addEventListener("focus", removeerror);
+            errors = 1;
             return;
         }
         console.log(data);
