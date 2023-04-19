@@ -28,15 +28,36 @@ function getStats() {
                     var cardEl = document.createElement('div');
                     cardEl.setAttribute("class", "card col-md-5");
                     cardEl.setAttribute("style", "width: 20rem");
-                    cardEl.textContent = dataArray.name;
+                    cardEl.textContent = dataArray.name + " stats:";
 
                     var alignBox = document.createElement('div');
-                    alignBox.textContent = dataArray.biography.alignment;
+                    alignBox.textContent ="Alignment: " + dataArray.biography.alignment;
                     cardEl.appendChild(alignBox);
 
-                    var statBox = document.createElement('div');
-                    statBox.textContent = 'Strength: ' + dataArray.powerstats.strength;
-                    cardEl.appendChild(statBox);
+                    // var affilBox = document.createElement('div');
+                    // affilBox.textContent ="Groups: " + dataArray.connections["group-affiliations"];
+                    // cardEl.appendChild(affilBox); 
+
+
+                    var occBox = document.createElement('div');
+                    occBox.textContent ="Occupation: " + dataArray.work.occupation;
+                    cardEl.appendChild(occBox);
+
+                    var strBox = document.createElement('div');
+                    strBox.textContent = 'Strength: ' + dataArray.powerstats.strength;
+                    var comBox = document.createElement('div');
+                    comBox.textContent = 'Combat: ' + dataArray.powerstats.combat;
+                    var intBox = document.createElement('div');
+                    intBox.textContent = 'Intelligence: ' + dataArray.powerstats.intelligence;
+                    var spdBox = document.createElement('div');
+                    spdBox.textContent = 'Speed: ' + dataArray.powerstats.speed;
+                    var durBox = document.createElement('div');
+                    durBox.textContent = 'Durability: ' + dataArray.powerstats.durability;
+                    cardEl.appendChild(strBox);
+                    cardEl.appendChild(comBox);
+                    cardEl.appendChild(intBox);
+                    cardEl.appendChild(spdBox);
+                    cardEl.appendChild(durBox);
 
                     statCard.appendChild(cardEl);
                 }
