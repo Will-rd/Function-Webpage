@@ -27,12 +27,12 @@ function getStats() {
                 if (dataArray.name === getStat) {
                     console.log(dataArray.biography.alignment);
                     console.log(dataArray.powerstats);
-                    var cardEl = document.createElement('div');
-                    cardEl.setAttribute("class", "card col-md-5");
+                    var cardEl = document.createElement('h1');
+                    cardEl.setAttribute("class", "card col-md-5 p-3 mb-2 bg-dark text-info font-weight-bold");
                     cardEl.setAttribute("style", "width: 20rem");
                     cardEl.textContent = dataArray.name + " stats:";
 
-                    var alignBox = document.createElement('div');
+                    var alignBox = document.createElement('h4');
                     alignBox.textContent ="Alignment: " + dataArray.biography.alignment;
                     cardEl.appendChild(alignBox);
 
@@ -41,19 +41,19 @@ function getStats() {
                     // cardEl.appendChild(affilBox); 
 
 
-                    var occBox = document.createElement('div');
+                    var occBox = document.createElement('h4');
                     occBox.textContent ="Occupation: " + dataArray.work.occupation;
                     cardEl.appendChild(occBox);
 
-                    var strBox = document.createElement('div');
+                    var strBox = document.createElement('h4');
                     strBox.textContent = 'Strength: ' + dataArray.powerstats.strength;
-                    var comBox = document.createElement('div');
+                    var comBox = document.createElement('h4');
                     comBox.textContent = 'Combat: ' + dataArray.powerstats.combat;
-                    var intBox = document.createElement('div');
+                    var intBox = document.createElement('h4');
                     intBox.textContent = 'Intelligence: ' + dataArray.powerstats.intelligence;
-                    var spdBox = document.createElement('div');
+                    var spdBox = document.createElement('h4');
                     spdBox.textContent = 'Speed: ' + dataArray.powerstats.speed;
-                    var durBox = document.createElement('div');
+                    var durBox = document.createElement('h4');
                     durBox.textContent = 'Durability: ' + dataArray.powerstats.durability;
                     cardEl.appendChild(strBox);
                     cardEl.appendChild(comBox);
