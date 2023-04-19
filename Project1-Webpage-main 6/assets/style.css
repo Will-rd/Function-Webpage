@@ -1,0 +1,50 @@
+header {
+    background-color: #ED1D24;
+    text-align: center;
+    height: 170px;
+}
+
+h1 {
+    color:white;
+    padding: 20px;
+    font-size: 50px;
+}
+
+.search{
+    width: 50%;
+    margin-left: 10px;
+}
+
+.searchButton {
+    background-color: white;
+    border-radius: 10%;
+}
+
+body {
+    background-color: yellow;
+}
+
+h2 {
+    text-align: center;
+}
+
+.comicImg{
+    height:185px;
+    width:130px;
+    align-self:end;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.comics{
+    display:flex;
+    justify-content:center;
+}
+
+.imageBox,
+.comics {
+  display: none;
+}
+.heroName {
+    display: none;
+  }
