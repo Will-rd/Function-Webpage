@@ -51,7 +51,7 @@ function getStats() {
 // Api for name, ID and image retrieved from character name input
 // Api for comic list retrieved from ID result
 var imageHero = document.querySelector(".imageBox")
-
+document.querySelector('.imageBox').style.display = 'block';
 var searchButton = document.querySelector(".search");
 
 // This is the the line to make the button interactive
