@@ -94,7 +94,6 @@ searchButton.addEventListener("submit", function (event) {
     if(comicsPresent){
         removePrevious();
     }
-    getStats();
     var character = characterNameInput.value;
 
     // Api for name, ID and image retrieved from character name input 
@@ -106,6 +105,9 @@ searchButton.addEventListener("submit", function (event) {
     })
     .then(function(data){
         if(data.data.results.length<1){
+            if(errors===1){
+                return;
+            }
             // Add error message because no character with that name was found
             var error = document.createElement("div");
             error.innerHTML = "Error. No characters were found. Check spelling.";
@@ -116,8 +118,10 @@ searchButton.addEventListener("submit", function (event) {
             formEl.addEventListener("submit", removeerror);
             inputEl.addEventListener("focus", removeerror);
             errors = 1;
+            comicsPresent=false;
             return;
         }
+        
         var charID = data.data.results[0].id;       
 
             // Hero image on card
@@ -158,6 +162,6 @@ searchButton.addEventListener("submit", function (event) {
                     }
                     comicsPresent = true;
                 })
+                getStats();
         })
-
 })
