@@ -7,6 +7,7 @@ var heroComics = document.querySelector(".comicList")
 var formEl = document.getElementById("form");
 var inputEl = document.getElementById("specificSizeInputName");
 var errors = 0;
+var comicsPresent = false;
 
 //Creating a function to call inside of the event listener to fetch data from an alternate API to append marvel charachter or villain stats and info
 
@@ -62,16 +63,10 @@ function getStats() {
     return;
 }
 
-
-
-
-// Marvel api keys
-// Api for name, ID and image retrieved from character name input
-// Api for comic list retrieved from ID result
 var imageHero = document.querySelector(".imageBox")
 var searchButton = document.querySelector(".search");
-searchButton.addEventListener("click", function (event) {
-    // Get all the elements you want to delete
+
+function removePrevious(){
     var comicCards = document.querySelectorAll(".comicCard");
     var imageElement = document.querySelector(".imageBox img");
     var nameElement = document.querySelector(".heroName h2");
@@ -84,10 +79,7 @@ searchButton.addEventListener("click", function (event) {
     // Delete the hero image, name and comic list
     imageElement.remove();
     nameElement.remove();
-    
-});
-
-
+}
 
 function removeerror(){
     if(errors>0){
@@ -99,6 +91,9 @@ function removeerror(){
 // This is the the line to make the button interactive
 searchButton.addEventListener("submit", function (event) {
     event.preventDefault();
+    if(comicsPresent){
+        removePrevious();
+    }
     getStats();
     var character = characterNameInput.value;
 
@@ -161,6 +156,7 @@ searchButton.addEventListener("submit", function (event) {
                         comicImg.className = "comicImg";
 
                     }
+                    comicsPresent = true;
                 })
         })
 
