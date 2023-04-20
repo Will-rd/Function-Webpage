@@ -79,6 +79,25 @@ function getStats() {
 // Api for comic list retrieved from ID result
 var imageHero = document.querySelector(".imageBox")
 var searchButton = document.querySelector(".search");
+searchButton.addEventListener("click", function (event) {
+    // Get all the elements you want to delete
+    var cardElements = document.querySelectorAll(".card");
+    var imageElement = document.querySelector(".imageBox img");
+    var nameElement = document.querySelector(".heroName h2");
+    var comicsElement = document.querySelector(".comicList ul");
+
+    // Loop through all the card elements and delete them
+    for (var i = 0; i < cardElements.length; i++) {
+        cardElements[i].remove();
+    }
+
+    // Delete the hero image, name and comic list
+    imageElement.remove();
+    nameElement.remove();
+    comicsElement.remove();
+});
+
+
 
 function removeerror(){
     if(errors>0){
