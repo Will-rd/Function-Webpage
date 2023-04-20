@@ -75,7 +75,7 @@ searchButton.addEventListener("click", function (event) {
     var comicCards = document.querySelectorAll(".comicCard");
     var imageElement = document.querySelector(".imageBox img");
     var nameElement = document.querySelector(".heroName h2");
-    var comicsElement = document.querySelector(".comicList ul");
+    
 
     for(x=0;x<comicCards.length;x++){
         comicCards[x].remove();
@@ -84,7 +84,7 @@ searchButton.addEventListener("click", function (event) {
     // Delete the hero image, name and comic list
     imageElement.remove();
     nameElement.remove();
-    comicsElement.remove();
+    
 });
 
 
@@ -134,6 +134,8 @@ searchButton.addEventListener("submit", function (event) {
             var charName = document.createElement("h2");
             charName.textContent = data.data.results[0].name;
             heroName.appendChild(charName);
+
+            localStorage.setItem("Hero Name",JSON.stringify(character));
 
             // Second fetch to obtain comic list
             var comicsURL = "https://gateway.marvel.com:443/v1/public/characters/" + charID + "/comics?ts=1&characterId=" + charID + "&orderBy=-issueNumber&apikey=cd73d5145c7087c52ee70053e3cce481&hash=964657b7e339d5a0e89b1e4538d81e94";
