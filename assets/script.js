@@ -118,6 +118,7 @@ searchButton.addEventListener("submit", function (event) {
             formEl.addEventListener("submit", removeerror);
             inputEl.addEventListener("focus", removeerror);
             errors = 1;
+            comicsPresent=false;
             return;
         }
         
