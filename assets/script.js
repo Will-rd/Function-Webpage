@@ -20,26 +20,17 @@ function getStats() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
             for (var i = 0; i < data.results.length; i++) {
                 var dataArray = data.results[i];
-                //   console.log(dataArray.name);
                 if (dataArray.name === getStat) {
-                    console.log(dataArray.biography.alignment);
-                    console.log(dataArray.powerstats);
                     var cardEl = document.createElement('h1');
-                    cardEl.setAttribute("class", "card col-md-5 p-3 mb-2 bg-dark text-info font-weight-bold");
+                    cardEl.setAttribute("class", "comicCard col-md-5 p-3 mb-2 bg-dark text-info font-weight-bold");
                     cardEl.setAttribute("style", "width: 20rem");
                     cardEl.textContent = dataArray.name + " stats:";
 
                     var alignBox = document.createElement('h4');
                     alignBox.textContent ="Alignment: " + dataArray.biography.alignment;
                     cardEl.appendChild(alignBox);
-
-                    // var affilBox = document.createElement('div');
-                    // affilBox.textContent ="Groups: " + dataArray.connections["group-affiliations"];
-                    // cardEl.appendChild(affilBox); 
-
 
                     var occBox = document.createElement('h4');
                     occBox.textContent ="Occupation: " + dataArray.work.occupation;
@@ -81,14 +72,13 @@ var imageHero = document.querySelector(".imageBox")
 var searchButton = document.querySelector(".search");
 searchButton.addEventListener("click", function (event) {
     // Get all the elements you want to delete
-    var cardElements = document.querySelectorAll(".card");
+    var comicCards = document.querySelectorAll(".comicCard");
     var imageElement = document.querySelector(".imageBox img");
     var nameElement = document.querySelector(".heroName h2");
     var comicsElement = document.querySelector(".comicList ul");
 
-    // Loop through all the card elements and delete them
-    for (var i = 0; i < cardElements.length; i++) {
-        cardElements[i].remove();
+    for(x=0;x<comicCards.length;x++){
+        comicCards[x].remove();
     }
 
     // Delete the hero image, name and comic list
@@ -110,10 +100,6 @@ function removeerror(){
 searchButton.addEventListener("submit", function (event) {
     event.preventDefault();
     getStats();
-
-
-
-
     var character = characterNameInput.value;
 
     // Api for name, ID and image retrieved from character name input 
@@ -137,23 +123,17 @@ searchButton.addEventListener("submit", function (event) {
             errors = 1;
             return;
         }
-        console.log(data);
-        var charID = data.data.results[0].id;
-        console.log(charID);
-       
+        var charID = data.data.results[0].id;       
 
             // Hero image on card
             var thumbImage = document.createElement("img")
             imageHero.appendChild(thumbImage)
             thumbImage.setAttribute("src", data.data.results[0].thumbnail.path + "." + data.data.results[0].thumbnail.extension);
-            console.log(thumbImage);
 
             // Hero name element on card
             var charName = document.createElement("h2");
             charName.textContent = data.data.results[0].name;
             heroName.appendChild(charName);
-
-            console.log(charName);
 
             // Second fetch to obtain comic list
             var comicsURL = "https://gateway.marvel.com:443/v1/public/characters/" + charID + "/comics?ts=1&characterId=" + charID + "&orderBy=-issueNumber&apikey=cd73d5145c7087c52ee70053e3cce481&hash=964657b7e339d5a0e89b1e4538d81e94";
@@ -162,7 +142,6 @@ searchButton.addEventListener("submit", function (event) {
                     return response.json();
                 })
                 .then(function (data) {
-                    console.log(data);
 
                     for (var i = 0; i < 5; i++) {
 
